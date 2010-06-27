@@ -1707,6 +1707,10 @@ struct text_object *construct_text_object(char *s, const char *arg, long
 		obj->sub = (text_object*)malloc(sizeof(struct text_object));
 		extract_variable_text_internal(obj->sub, arg);
 		obj->callbacks.print = &print_blink;
+	END OBJ_ARG(blink_blank, 0, "blink_image needs a argument")
+		obj->sub = (text_object*)malloc(sizeof(struct text_object));
+		extract_variable_text_internal(obj->sub, arg);
+		obj->callbacks.print = &print_blink_blank;
 	END OBJ_ARG(to_bytes, 0, "to_bytes needs a argument")
 		obj->sub = (text_object*)malloc(sizeof(struct text_object));
 		extract_variable_text_internal(obj->sub, arg);

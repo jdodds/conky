@@ -820,6 +820,27 @@ void print_blink(struct text_object *obj, char *p, int p_max_size)
 	visible = !visible;
 }
 
+void print_blink_blank(struct text_object *obj, char *p, int p_max_size) 
+{
+	//this is mostly for blinking little xpm icons
+	std::vector<char> buf(max_user_text);
+	static int visible = 1;
+	static int last_len = 0;
+	int i;
+
+	if (visible) {
+		generate_text_internal(&(buf[0]), max_user_text, *obj->sub);
+		last_len = strlen(&(buf[0]));
+		snprintf(p, p_max_size, "%s", &(buf[0]));
+	} else {
+		 snprintf(p, 2, "%c", ' ');
+	}
+
+	visible = !visible;
+}
+
+
+
 void print_include(struct text_object *obj, char *p, int p_max_size)
 {
 	std::vector<char> buf(max_user_text);
