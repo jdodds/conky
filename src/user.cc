@@ -34,6 +34,7 @@
 #include <errno.h>
 #include "conky.h"
 #include <memory>
+#include <unistd.h>
 
 void print_uid_name(struct text_object *obj, char *p, int p_max_size) {
 	struct passwd *pw;
@@ -82,15 +83,22 @@ void print_gid_name(struct text_object *obj, char *p, int p_max_size) {
 void print_user_home(struct text_object *obj, char *p, int p_max_size) {
 	struct passwd *pw;
 	char* user_name;
-
+	
 	user_name = obj->data.s;
 	pw = getpwnam(user_name);
-
+	
 	if(pw != NULL) {
 	 	snprintf(p, p_max_size, "%s", pw->pw_dir);
 	} else {
 	 	NORM_ERR("The user %s doesn't exist", user_name);
 	}
+}
+
+void print_cur_user_home(struct text_object *obj, char *p, int p_max_size) {
+	struct passwd *pw;
+
+	pw = getpwuid(getuid());
+	snprintf(p, p_max_size, "%s", pw->pw_dir);
 }
 
 void free_user_home(struct text_object *obj) {

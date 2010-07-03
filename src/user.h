@@ -34,5 +34,6 @@
 void print_gid_name(struct text_object *obj, char *p, int p_max_size);
 void print_uid_name(struct text_object *obj, char *p, int p_max_size);
 void print_user_home(struct text_object *obj, char *p, int p_max_size);
+void print_cur_user_home(struct text_object *obj, char *p, int p_max_size);
 void free_user_home(struct text_object *obj);
 #endif /* _USER_H */

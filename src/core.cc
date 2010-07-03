@@ -1134,6 +1134,8 @@ struct text_object *construct_text_object(char *s, const char *arg, long
 		obj->data.s = strdup(arg);
 		obj->callbacks.print = &print_user_home;
 		obj->callbacks.free = &free_user_home;
+	END OBJ(cur_user_home, 0)
+		obj->callbacks.print = &print_cur_user_home;
 	END OBJ_ARG(uid_name, 0, "uid_name needs a uid as argument")
 		extract_object_args_to_sub(obj, arg);
 		obj->callbacks.print = &print_uid_name;
