@@ -3769,6 +3769,15 @@
     <varlistentry>
         <term>
             <command>
+                <option>cur_user_home</option>
+            </command>
+        </term>
+        <listitem>Home directory of the user running this conky process
+        <para /></listitem>
+    </varlistentry>
+    <varlistentry>
+        <term>
+            <command>
                 <option>unflagged_mails</option>
             </command>
             <option>(maildir)</option>
