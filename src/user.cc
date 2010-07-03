@@ -78,3 +78,21 @@ void print_gid_name(struct text_object *obj, char *p, int p_max_size) {
 		NORM_ERR("$gid_name didn't receive a gid as argument")
 	}
 }
+
+void print_user_home(struct text_object *obj, char *p, int p_max_size) {
+	struct passwd *pw;
+	char* user_name;
+
+	user_name = obj->data.s;
+	pw = getpwnam(user_name);
+
+	if(pw != NULL) {
+	 	snprintf(p, p_max_size, "%s", pw->pw_dir);
+	} else {
+	 	NORM_ERR("The user %s doesn't exist", user_name);
+	}
+}
+
+void free_user_home(struct text_object *obj) {
+	free_and_zero(obj->data.s);
+}

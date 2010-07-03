@@ -1130,6 +1130,10 @@ struct text_object *construct_text_object(char *s, const char *arg, long
 	END OBJ_ARG(gid_name, 0, "gid_name needs a gid as argument")
 		extract_object_args_to_sub(obj, arg);
 		obj->callbacks.print = &print_gid_name;
+	END OBJ_ARG(user_home, 0, "user_home needs a user as argument")
+		obj->data.s = strdup(arg);
+		obj->callbacks.print = &print_user_home;
+		obj->callbacks.free = &free_user_home;
 	END OBJ_ARG(uid_name, 0, "uid_name needs a uid as argument")
 		extract_object_args_to_sub(obj, arg);
 		obj->callbacks.print = &print_uid_name;
